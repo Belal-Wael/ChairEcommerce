@@ -1,0 +1,107 @@
+﻿@model IEnumerable<ChairEcommerce.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                Category Name
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Name)
+            </td>
+          
+            <td>
+                    <a class="btn btn-success"  asp-action="Details" asp-route-id="@item.Id">Details</a> |
+
+                    <a class="btn btn-primary"  asp-action="Update" asp-route-id="@item.Id">Edit</a> |
+
+                    <button class="btn btn-danger DeleteBtn" productName="@item.Name" productId="@item.Id">Delete</button>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+<!-- Include SweetAlert2 via CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+
+    var buttons=document.querySelectorAll(".DeleteBtn");
+    buttons.forEach(btn=>
+      btn.addEventListener("click",function(){
+
+          
+          let name=this.getAttribute("productName");
+          let Id=this.getAttribute("productId");
+
+          console.log(name," ",Id);
+
+         Swal.fire({
+        title: 'Are you sure?',
+        text: `Do you really want to delete "${name}"? This action cannot be undone.`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'Cancel'
+        })
+        .then((result) => {
+            if (result.isConfirmed) {
+                console.log("deiele");
+                // Redirect to Delete action if confirmed
+                window.location.href = '/Product/Delete/' + Id;
+            }
+        })
+
+      })
+    
+    )
+
+</script>

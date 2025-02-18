@@ -1,0 +1,34 @@
+# ملفات البناء
+bin/
+obj/
+
+# إعدادات النظام
+.vs/
+*.suo
+*.user
+*.userosscache
+
+# ملفات التكوين الحساسة
+appsettings.json
+appsettings.Development.json
+
+# ملفات النظام
+.DS_Store
+Thumbs.db
+
+# ملفات البناء الناتجة
+*.dll
+*.exe
+*.log
+*.pdb
+*.cache
+
+# مجلد Migrations (اختياري)
+Migrations/
+
+# ملفات ناتجة عن الأدوات
+ScaffoldingReadMe
+
+# إعدادات Visual Studio
+*.csproj.user
+*.sln.docstates

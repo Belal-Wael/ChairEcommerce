@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ChairEcommerce</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ChairEcommerce.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Booststrape -->
+   @*  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> *@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/css/style.css">
+   
+</head>
+<body class="position-relative">
+    <header>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg  navbar-light pt-3 pb-2 w-100">
+            <div class="container-fluid  d-flex justify-content-center position-relative z-1">
+                <div class="row">
+                    <div class="topnav col-lg-12 m-2 ">
+                        <div class="nav-brand fw-bold logo"><span class="text-warning">CH</span>WOOd</div>
+                        <input type="search" placeholder="Search here ..." class="ms-md-5 me-md-5">
+                        <i class="bi bi-cart"><span id="cartValue">0</span></i>
+                    </div>
+                    <button class="navbar-toggler text-light bg-warning" type="button" data-bs-toggle="collapse" data-bs-target="#navbartap">
+                        <span class="navbar-toggler-icon "></span>
+                    </button>
+
+                    <div class="navbar-collapse collapse col-lg-12 " id="navbartap">
+                        <ul class="navbar-nav">
+                            <li class="nav-item ms-lg-3 active-link-in-nav"><a class="nav-link text-light" href="./index.html">Home</a></li>
+                            <li class="nav-item ms-lg-3 "><a class="nav-link text-light" href="./StudyChair.html">Study Table</a></li>
+                            <li class="nav-item ms-lg-3 "><a class="nav-link text-light" href="">Plastic Chair</a></li>
+                            <li class="nav-item ms-lg-3 "><a class="nav-link text-light" href="">Wardrobes</a></li>
+                            <li class="nav-item ms-lg-3 "><a class="nav-link text-light" href="">More</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="background">
+                    <div class="cartInfo">
+                        <div class="container">
+                            <div class="header">
+                                <div class="numberOfItem">
+                                    <i class="bi bi-cart"></i>
+                                    <span>2 Item</span>
+                                </div>
+                                <i class="fa-solid fa-xmark closeBtn"></i>
+                            </div>
+                            <div class="body">
+                                <div class="item">
+                                    <div class="image">
+                                        <img src="images/05-378x450.jpg" alt="">
+                                    </div>
+                                    <div class="info">
+                                        <h2>Heloo test</h2>
+                                        <div class="name">Name :<span></span> </div>
+                                        <div class="brand">Brand :<span>Apple</span></div>
+                                        <div class="avalbility">Availability : <span> in stock</span> </div>
+                                        <div class="price">Price :<span></span> </div>
+                                        <input type="number" placeholder="Count .." class="much-pro">
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="image">
+                                        <img src="images/05-378x450.jpg" alt="">
+                                    </div>
+                                    <div class="info">
+                                        <h2>Heloo test</h2>
+                                        <div class="name">Name :<span></span> </div>
+                                        <div class="brand">Brand :<span>Apple</span></div>
+                                        <div class="avalbility">Availability :<span>in stock</span> </div>
+                                        <div class="price">Price :<span></span> </div>
+                                        <input type="number" class="much-pro">
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="image">
+                                        <img src="images/05-378x450.jpg" alt="">
+                                    </div>
+                                    <div class="info">
+                                        <h2>Heloo test</h2>
+                                        <div class="name">Name :<span></span> </div>
+                                        <div class="brand">Brand :<span>Apple</span></div>
+                                        <div class="avalbility">Availability :<span>in stock</span> </div>
+                                        <div class="price">Price :<span></span> </div>
+                                        <input type="number" class="much-pro">
+                                    </div>
+                                </div>
+                            </div>
+                            <buuton class="checkOut">
+                                <span>CHECKOUT .</span>
+                                <span class="price">$2000</span>
+                            </buuton>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+            @RenderBody()
+      
+
+    <footer class="bg-dark text-light pt-5 mt-5">
+        <div class="container">
+            <h1 class="text-center text-warning">CH<span>WOOd</span></h1>
+            <div class="row">
+                <div class="links d-flex">
+                    <span><a class="nav-link text-light" href="">Home</a></span>
+                    <span><a class="nav-link text-light" href="">Study Table</a></span>
+                    <span><a class="nav-link text-light" href="">Plastic Chair</a></span>
+                    <span><a class="nav-link text-light" href="">Wardrobes</a></span>
+                    <span><a class="nav-link text-light" href="">More</a></span>
+                </div>
+                <div class="social-Contact d-flex py-5 fs-1">
+                    <i class="fab fa-facebook-f p-2" style="background-color: #1877F2; color: white;"></i>
+                    <i class="fab fa-twitter p-2" style="background-color: #1DA1F2; color: white;"></i>
+                    <i class="fab fa-youtube p-2" style="background-color: #FF0000; color: white;"></i>
+                </div>
+                <hr>
+                <p class="sub-Footer text-center fs-6 pb-1">
+                    Made With &copy; Belal Wael
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="~/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/main.js"></script>
+    @* @await RenderSectionAsync("Scripts", required: false) *@
+   
+  
+</body>
+</html>
