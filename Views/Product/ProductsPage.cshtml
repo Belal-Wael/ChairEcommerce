@@ -1,0 +1,53 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "ProductsPage";
+}
+
+<div class="product py-5">
+
+    <div class="productInfo d-none ">
+        <div class="moreinfo">
+            <i class="fa-solid fa-xmark closeBtn"></i>
+            <div class="image">
+                <img src="images/05-378x450.jpg" alt="">
+            </div>
+            <div class="info">
+                <h2>Heloo test</h2>
+                <div class="name">Name :<span></span> </div>
+                <div class="brand">Brand :<span>Apple</span></div>
+                <div class="avalbility">Availability :<span>in stock</span> </div>
+                <div class="price">Price :<span></span> </div>
+                <p class="mt-2">Description:<span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi at enim deserunt atque repellat id</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="container py-5">
+        <h3>Study Table</h3>
+        <hr>
+        <div class="row">
+            @foreach(var item in Model){
+                <div class="card col-lg-3 col-md-4 col-sm-6 pt-3">
+                    <div class="image">
+                        <img src="~/images/@item.imageUrl" alt="">
+                        <div class="qick-choose d-lg-flex" id="optionClick">
+                            <i class="fa-solid fa-eye"></i>
+                            <i class="fa-solid fa-cart-shopping fs-2 "></i>
+                            <i class="fa-regular fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="rate">
+                            <i class="fa-solid fa-star "></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <div class="name">@item.Name</div>
+                        <div class="price">$@item.Price</div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

@@ -1,8 +1,8 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using ChairEcommerce.Models;
+﻿using ChairEcommerce.Models;
 using ChairEcommerce.Service.IRepository;
 using ChairEcommerce.Service.Repository;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 namespace ChairEcommerce
 {
     public class Program
@@ -14,21 +14,25 @@ namespace ChairEcommerce
 
             builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
 
-            builder.Services.AddScoped<IAddressRepository,AddressRepository>();
-            builder.Services.AddScoped<ICartRepository,CartRepository>();
-            builder.Services.AddScoped<ICategoryRepository,CategoryRepository>();
-            builder.Services.AddScoped<IOrderRepository,OrderRepository>();
-            builder.Services.AddScoped<IpaymentRepository,paymentRepository>();
-            builder.Services.AddScoped<IProductRepository,ProductRepository>();
+            builder.Services.AddScoped<IAddressRepository, AddressRepository>();
+            builder.Services.AddScoped<ICartRepository, CartRepository>();
+            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+            builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+            builder.Services.AddScoped<IpaymentRepository, paymentRepository>();
+            builder.Services.AddScoped<IProductRepository, ProductRepository>();
             builder.Services.AddScoped<ITrackingDetails, Service.Repository.TrackingDetails>();
 
+            builder.Services.AddRazorPages();
 
 
 
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
-                .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<AppDbContext>();
+            builder.Services.AddIdentity<User, IdentityRole>(options =>
+             options.SignIn.RequireConfirmedAccount = false)
+               .AddEntityFrameworkStores<AppDbContext>()
+               .AddDefaultTokenProviders();
+
+
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
@@ -54,7 +58,7 @@ namespace ChairEcommerce
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-            app.UseEndpoints(endpoint=>endpoint.MapRazorPages());
+            app.MapRazorPages();
             app.Run();
         }
     }

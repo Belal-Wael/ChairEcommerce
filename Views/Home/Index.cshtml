@@ -1,4 +1,10 @@
-﻿
+﻿@model List<Product>
+
+@{
+    var categories = Model.Select(p => p.Category.Name).Distinct().ToList();
+}
+
+
 <section id="loading">
     <span class="loader"></span>
 </section>
@@ -51,303 +57,169 @@
     </div>
 </div>
 <!--  end offers  -->
-<div class="product pt-5 ">
+@foreach (var cat in categories)
+{
 
-    <div class="productInfo d-none ">
-        <div class="moreinfo">
-            <i class="fa-solid fa-xmark closeBtn"></i>
-            <div class="image">
-                <img src="~/images/05-378x450.jpg" alt="">
-            </div>
-            <div class="info">
-                <h2>Heloo test</h2>
-                <div class="name">Name :<span></span> </div>
-                <div class="brand">Brand :<span>Apple</span></div>
-                <div class="avalbility">Availability :<span>in stock</span> </div>
-                <div class="price">Price :<span></span> </div>
-                <p class="mt-2">Description:<span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi at enim deserunt atque repellat id</span></p>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <h3>Study Table</h3>
-        <hr>
-        <div class="row">
-            <div class="card col-lg-3 col-md-4 col-sm-6">
-                <div class="image">
-                    <img src="~/images/04-378x450.jpg" alt="">
-                    <div class="qick-choose d-lg-flex" id="optionClick">
-                        <i class="fa-solid fa-eye"></i>
-                        <i class="fa-solid fa-cart-shopping fs-2 "></i>
-                        <i class="fa-regular fa-heart"></i>
+    var products = Model.Where(p => p.Category.Name == cat).ToList();
+    var count = 0;
+    @* دراسة الفئة *@
+    @if (cat == "Study Table")
+    {
+        <div class="product pt-5 ">
+            <div class="productInfo d-none ">
+                <div class="moreinfo">
+                    <i class="fa-solid fa-xmark closeBtn"></i>
+                    <div class="image">
+                        <img src="~/images/05-378x450.jpg" alt="">
                     </div>
-                </div>
-                <div class="card-body">
-                    <div class="rate">
-                        <i class="fa-solid fa-star "></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
+                    <div class="info">
+                        <h2>Hello test</h2>
+                        <div class="name">Name :<span></span> </div>
+                        <div class="brand">Brand :<span>Apple</span></div>
+                        <div class="avalbility">Availability :<span>in stock</span> </div>
+                        <div class="price">Price :<span></span> </div>
+                        <p class="mt-2">Description:<span>Lorem ipsum dolor sit amet consectetur adipisicing elit.</span></p>
                     </div>
-                    <div class="name">Consectetur Hampden</div>
-                    <div class="price">$110.00</div>
                 </div>
             </div>
-            <div class="card col-lg-3 col-md-4 col-sm-6">
-                <div class="image">
-                    <img src="~/images/05-378x450.jpg" alt="">
-                    <div class="qick-choose d-lg-flex" id="optionClick">
-                        <i class="fa-solid fa-eye"></i>
-                        <i class="fa-solid fa-cart-shopping fs-2 "></i>
-                        <i class="fa-regular fa-heart"></i>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="rate">
-                        <i class="fa-solid fa-star "></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <div class="name">Exercitat Virginia</div>
-                    <div class="price">$109.00</div>
-                </div>
-            </div>
-            <div class="card col-lg-3 col-md-4 col-sm-6">
-                <div class="image">
-                    <img src="~/images/10-378x450.jpg" alt="">
-                    <div class="qick-choose d-lg-flex" id="optionClick">
-                        <i class="fa-solid fa-eye"></i>
-                        <i class="fa-solid fa-cart-shopping fs-2 "></i>
-                        <i class="fa-regular fa-heart"></i>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="rate">
-                        <i class="fa-solid fa-star "></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <div class="name">Neque Porro Quisquam</div>
-                    <div class="price">$130.00</div>
-                </div>
-            </div>
-            <div class="card col-lg-3 col-md-4 col-sm-6">
-                <div class="image">
-                    <img src="~/images/11-378x450.jpg" alt="">
-                    <div class="qick-choose d-lg-flex" id="optionClick">
-                        <i class="fa-solid fa-eye"></i>
-                        <i class="fa-solid fa-cart-shopping fs-2 "></i>
-                        <i class="fa-regular fa-heart"></i>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="rate">
-                        <i class="fa-solid fa-star "></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <div class="name">Nostrud Exercitation</div>
-                    <div class="price">$90.00</div>
+            <div class="container">
+                <h3>@cat</h3>
+                <hr>
+                <div class="row">
+                    @{
+                         count = 0;
+                    }
+                    @foreach (var item in products)
+                    {
+                        if (count <= 4)
+                        {
+                            <div class="card col-lg-3 col-md-4 col-sm-6">
+                                <div class="image">
+                                    <img src="~/images/@item.imageUrl" alt="">
+                                    <div class="qick-choose d-lg-flex" id="optionClick">
+                                        <i class="fa-solid fa-eye"></i>
+                                        <a asp-action="AddProductinCartAndCartItem" asp-controller="Product" asp-route-productId="@item.Id">
+                                            <i class="fa-solid fa-cart-shopping fs-2 "></i></a>
+                                        <i class="fa-regular fa-heart"></i>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="rate">
+                                        <i class="fa-solid fa-star "></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="name">@item.Name</div>
+                                    <div class="price">$ @item.Price</div>
+                                </div>
+                            </div>
+                            count++;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    }
+    else if (cat == "Plastic Chair")
+    {
+        <div class="special-Category py-3" id="specialCategory">
+            <h3>@cat</h3>
+            <div class="arrows container d-flex  my-3">
+                <i class="bi bi-arrow-left ms-0 "></i>
+                <i class="bi bi-arrow-right me-0"></i>
+            </div>
+            <div class="container">
+                <div class="row products flex-nowrap ">
+                    @{
+                        count = 0;
+                    }
+                    @foreach (var item in products)
+                    {
+                        if (count <= 10)
+                        {
+                            <div class="card col-lg-3 col-md-4 col-sm-6">
+                                <div class="image">
+                                    <img src="~/images/@item.imageUrl" alt="">
+                                </div>
+                                <div class="card-body">
+                                    <div class="name">@item.Name</div>
+                                    <div class="price">$@item.Price</div>
+                                </div>
+                            </div>
+                            count++;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                </div>
+            </div>
+            <div class="bullets d-flex ">
+                <span class="b1"></span>
+                <span class="b2"></span>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="new-category py-5">
+            <div class="container">
+                <div class="row ">
+                    @{
+                        count = 0;
+                    }
+                    @foreach (var item in products)
+                    {
+                        if (count <= 10)
+                        {
+                            <div class="card col-lg-3 col-md-4 col-sm-6">
+                                <div class="image">
+                                    <img src="~/images/@item.imageUrl" alt="">
+                                </div>
+                                <div class="card-body">
+                                    <div class="rate">
+                                        <i class="fa-solid fa-star "></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="name">@item.Name</div>
+                                    <div class="price">$@item.Price</div>
+                                </div>
+                            </div>
+                            count++;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                </div>
+                <div class="arrows">
+                    <div class="arrow-left">
+                        <img src="~/images/left-arrow.png" alt="">
+                    </div>
+                    <div class="arrow-right">
+                        <img src="~/images/right-arrow.webp" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 
-<!-- Special Category -->
-<div class="special-Category py-3" id="specialCategory">
-    <h3>Specail Category</h3>
-    <div class="arrows container d-flex  my-3">
-        <i class="bi bi-arrow-left ms-0 "></i>
-        <i class="bi bi-arrow-right me-0"></i>
-    </div>
-    <div class="container">
-        <div class="row products flex-nowrap ">
-            <div class="card col-lg-3 col-md-4 col-sm-6">
-                <div class="image">
-                    <img src="~/images/category-banner3.jpg" alt="">
-                </div>
-                <div class="card-body">
-                    <div class="name">Nostrud Exercitation</div>
-                    <div class="price">$90.00</div>
-                </div>
-            </div>
-            <div class="card col-lg-3 col-md-4 col-sm-6">
-                <div class="image">
-                    <img src="~/images/category-banner3.jpg" alt="">
-                </div>
-                <div class="card-body">
-                    <div class="name">Nostrud Exercitation</div>
-                    <div class="price">$90.00</div>
-                </div>
-            </div>
-            <div class="card col-lg-3 col-md-4 col-sm-6">
-                <div class="image">
-                    <img src="~/images/category-banner3.jpg" alt="">
-                </div>
-                <div class="card-body">
-                    <div class="name">Nostrud Exercitation</div>
-                    <div class="price">$90.00</div>
-                </div>
-            </div>
-            <div class="card col-lg-3 col-md-4 col-sm-6">
-                <div class="image">
-                    <img src="~/images/category-banner3.jpg" alt="">
-                </div>
-                <div class="card-body">
-                    <div class="name">Nostrud Exercitation</div>
-                    <div class="price">$90.00</div>
-                </div>
-            </div>
-            <div class="card col-lg-3 col-md-4 col-sm-6">
-                <div class="image">
-                    <img src="~/images/category-banner3.jpg" alt="">
-                </div>
-                <div class="card-body">
-                    <div class="name">Nostrud Exercitation</div>
-                    <div class="price">$90.00</div>
-                </div>
-            </div>
-            <div class="card col-lg-3 col-md-4 col-sm-6">
-                <div class="image">
-                    <img src="~/images/category-banner3.jpg" alt="">
-                </div>
-                <div class="card-body">
-                    <div class="name">Nostrud Exercitation</div>
-                    <div class="price">$90.00</div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="bullets d-flex ">
-        <span class="b1"></span>
-        <span class="b2"></span>
-    </div>
-</div>
+}
 
-<!-- New Category -->
-<div class="new-category py-5">
-    <div class="container">
-        <div class="row ">
-            <div class="card col-lg-3 col-md-4 col-sm-6">
-                <div class="image">
-                    <img src="~/images/04-378x450.jpg" alt="">
-                </div>
-                <div class="card-body">
-                    <div class="rate">
-                        <i class="fa-solid fa-star "></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <div class="name">Consectetur Hampden</div>
-                    <div class="price">$110.00</div>
-                </div>
-            </div>
-            <div class="card col-lg-3 col-md-4 col-sm-6">
-                <div class="image">
-                    <img src="~/images/05-378x450.jpg" alt="">
-                </div>
-                <div class="card-body">
-                    <div class="rate">
-                        <i class="fa-solid fa-star "></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <div class="name">Exercitat Virginia</div>
-                    <div class="price">$109.00</div>
-                </div>
-            </div>
-            <div class="card col-lg-3 col-md-4 col-sm-6">
-                <div class="image">
-                    <img src="~/images/10-378x450.jpg" alt="">
-                </div>
-                <div class="card-body">
-                    <div class="rate">
-                        <i class="fa-solid fa-star "></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <div class="name">Neque Porro Quisquam</div>
-                    <div class="price">$130.00</div>
-                </div>
-            </div>
-            <div class="card col-lg-3 col-md-4 col-sm-6">
-                <div class="image">
-                    <img src="~/images/11-378x450.jpg" alt="">
-                </div>
-                <div class="card-body">
-                    <div class="rate">
-                        <i class="fa-solid fa-star "></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <div class="name">Nostrud Exercitation</div>
-                    <div class="price">$90.00</div>
-                </div>
-            </div>
-            <div class="card col-lg-3 col-md-4 col-sm-6">
-                <div class="image">
-                    <img src="~/images/11-378x450.jpg" alt="">
-                </div>
-                <div class="card-body">
-                    <div class="rate">
-                        <i class="fa-solid fa-star "></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <div class="name">Nostrud Exercitation</div>
-                    <div class="price">$90.00</div>
-                </div>
-            </div>
-            <div class="card col-lg-3 col-md-4 col-sm-6">
-                <div class="image">
-                    <img src="~/images/11-378x450.jpg" alt="">
-                </div>
-                <div class="card-body">
-                    <div class="rate">
-                        <i class="fa-solid fa-star "></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <div class="name">Nostrud Exercitation</div>
-                    <div class="price">$90.00</div>
-                </div>
-            </div>
-            <div class="card col-lg-3 col-md-4 col-sm-6">
-                <div class="image">
-                    <img src="~/images/11-378x450.jpg" alt="">
-                </div>
-                <div class="card-body">
-                    <div class="rate">
-                        <i class="fa-solid fa-star "></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <div class="name">Nostrud Exercitation</div>
-                    <div class="price">$90.00</div>
-                </div>
-            </div>
-        </div>
-        <div class="arrows">
-            <div class="arrow-left">
-                <img src="~/images/left-arrow.png" alt="">
-            </div>
-            <div class="arrow-right">
-                <img src="~/images/right-arrow.webp" alt="">
-            </div>
-        </div>
-    </div>
-</div>
+
+
+
+
+
 <div class="brands py-2">
     <div class="container">
         <div class="row ps-2 pe-2">

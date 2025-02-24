@@ -20,9 +20,9 @@ namespace ChairEcommerce.Service.Repository
         public async Task DeleteAsync(int id)
         {
             var add = await GetByIdAsync(id);
-            if (add!=null)
+            if (add != null)
             {
-               _appDbContext.Addresss.Remove(add);
+                _appDbContext.Addresss.Remove(add);
                 await Save();
             }
         }
@@ -41,7 +41,7 @@ namespace ChairEcommerce.Service.Repository
             return null;
         }
 
-     
+
 
         public async Task UpdateAsync(Address address)
         {
@@ -51,7 +51,7 @@ namespace ChairEcommerce.Service.Repository
 
         public async Task Save()
         {
-          await _appDbContext.SaveChangesAsync();
+            await _appDbContext.SaveChangesAsync();
         }
     }
 }

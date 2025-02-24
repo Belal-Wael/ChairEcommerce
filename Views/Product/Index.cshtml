@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "dashboard";
 }
 
 <h1>Index</h1>
@@ -25,6 +26,9 @@
                 @Html.DisplayNameFor(model => model.Price)
             </th>
             <th>
+                image
+            </th>
+            <th>
                 Category Name
             </th>
            
@@ -46,6 +50,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
+                <td>
+                    <img src="~/images/@item.imageUrl"  class="w-25 h-25"/>
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Category.Name)
             </td>

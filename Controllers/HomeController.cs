@@ -1,21 +1,24 @@
-using System.Diagnostics;
 using ChairEcommerce.Models;
+using ChairEcommerce.Service.IRepository;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace ChairEcommerce.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IProductRepository _productRepository;
+        public HomeController(ILogger<HomeController> logger, IProductRepository productRepository)
         {
             _logger = logger;
+            _productRepository = productRepository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+
+            return View(await _productRepository.GetAllAsync());
         }
 
         public IActionResult Privacy()

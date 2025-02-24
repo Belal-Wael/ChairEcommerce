@@ -12,7 +12,7 @@ namespace ChairEcommerce.Models
         public int Id { get; set; }
 
         [EnumDataType(typeof(Status), ErrorMessage = "Invalid status.")]
-        public string Status {  get; set; }
+        public string Status { get; set; }
 
 
 

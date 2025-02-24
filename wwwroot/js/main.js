@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         //*****************banner**********************/
-    // if(window.location.pathname==='/index.html'){
+    if(window.location.pathname==='/Home/index'){
    
             function changePhotoDynamic() {
                 let urlimg = imgElemnt.getAttribute('src');
@@ -74,8 +74,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     Bullets[0].classList.add('active-bullet');
                     Bullets[1].classList.remove('active-bullet');
                 }
-                // }
             }
+    
             // change img dynamic
             changePhotoInterval = setInterval(changePhotoDynamic, 3000);
 
@@ -91,6 +91,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 changePhotoDynamic();
                 changePhotoInterval = setInterval(changePhotoDynamic, 5000);
             }, { passive: true });
+
+    }
         //***************************************************** */
 
 

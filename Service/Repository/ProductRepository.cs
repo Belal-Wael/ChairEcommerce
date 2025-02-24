@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ChairEcommerce.Service.Repository
 {
-    public class ProductRepository:IProductRepository
+    public class ProductRepository : IProductRepository
     {
         private readonly AppDbContext _appDbContext;
         public ProductRepository(AppDbContext appDbContext)
@@ -29,7 +29,9 @@ namespace ChairEcommerce.Service.Repository
 
         public async Task<IEnumerable<Product>> GetAllAsync()
         {
-            return await _appDbContext.Products.ToListAsync();
+            return await _appDbContext.Products
+                .Include(c => c.Category)
+                .ToListAsync();
         }
 
         public async Task<Product> GetByIdAsync(int id)
@@ -52,6 +54,13 @@ namespace ChairEcommerce.Service.Repository
         public async Task Save()
         {
             await _appDbContext.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<Product>> GetProductsByCatName(string catName)
+        {
+            return await _appDbContext.Products
+                .Include(c => c.Category)
+                .Where(p=>p.Category.Name==catName).ToListAsync();
         }
     }
 }

@@ -23,18 +23,18 @@ namespace ChairEcommerce.Controllers
 
         public async Task<IActionResult> addRoles(string UserId)
         {
-            var user=await _userManager.FindByIdAsync(UserId);
+            var user = await _userManager.FindByIdAsync(UserId);
             var myRole = await _userManager.GetRolesAsync(user);
 
-            var AllRoles=await _roleManager.Roles.ToListAsync();
+            var AllRoles = await _roleManager.Roles.ToListAsync();
 
-            if(AllRoles != null)
+            if (AllRoles != null)
             {
                 var roleList = AllRoles.Select(r => new RoleViewModel()
                 {
-                    RoleId =r.Id,
-                    RoleName=r.Name,
-                    useRole=myRole.Any(x=>x==r.Name)
+                    RoleId = r.Id,
+                    RoleName = r.Name,
+                    useRole = myRole.Any(x => x == r.Name)
                 });
 
                 ViewBag.user = user.UserName;
@@ -44,25 +44,27 @@ namespace ChairEcommerce.Controllers
             }
 
             return RedirectToAction("index");
-           
+
         }
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public async Task<IActionResult> addRoles(string UserId,string jsonRoles)
+        public async Task<IActionResult> addRoles(string UserId, string jsonRoles)
         {
             var user = await _userManager.FindByIdAsync(UserId);
 
-            List<RoleViewModel> roles = 
+            List<RoleViewModel> roles =
                 JsonConvert.DeserializeObject<List<RoleViewModel>>(jsonRoles);
 
-            if (roles != null) {
+            if (roles != null)
+            {
 
                 var userRole = await _userManager.GetRolesAsync(user);
 
-                foreach (var role in roles) {
+                foreach (var role in roles)
+                {
 
-                    if (userRole.Contains(role.RoleName.Trim())&& !role.useRole)
+                    if (userRole.Contains(role.RoleName.Trim()) && !role.useRole)
                     {
                         await _userManager.RemoveFromRoleAsync(user, role.RoleName.Trim());
                     }
@@ -77,7 +79,7 @@ namespace ChairEcommerce.Controllers
             return NotFound();
 
         }
-       
+
 
     }
 }

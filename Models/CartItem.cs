@@ -6,11 +6,11 @@ namespace ChairEcommerce.Models
     {
         public int Id { get; set; }
         [ForeignKey("cart")]
-        public int CartId {  get; set; }
+        public int CartId { get; set; }
         public Cart cart { get; set; }
 
         [ForeignKey("Product")]
-        public int productId {  get; set; }
+        public int productId { get; set; }
         public Product Product { get; set; }
 
         public int Quantity { get; set; }

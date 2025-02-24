@@ -10,8 +10,9 @@ html{
 }
 
 body{
-    overflow: hidden;
+    
     margin-bottom:0;
+    
 }
 .hide-scrollbar-thumb::-webkit-scrollbar {
     display: none;
@@ -766,7 +767,7 @@ nav ul li:hover::after{
     z-index: 1;
     width: 100%;
     flex-wrap: nowrap;
-    overflow: hidden;
+   /* overflow: hidden;*/
     padding: 8px 20px 10px 20px;
     margin-top: -15px;
 }

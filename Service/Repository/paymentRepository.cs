@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ChairEcommerce.Service.Repository
 {
-    public class paymentRepository:IpaymentRepository
+    public class paymentRepository : IpaymentRepository
     {
         private readonly AppDbContext _appDbContext;
         public paymentRepository(AppDbContext appDbContext)

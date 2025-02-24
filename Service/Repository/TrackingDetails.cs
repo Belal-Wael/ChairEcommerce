@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ChairEcommerce.Service.Repository
 {
-    public class TrackingDetails:ITrackingDetails
+    public class TrackingDetails : ITrackingDetails
     {
         private readonly AppDbContext _appDbContext;
         public TrackingDetails(AppDbContext appDbContext)
@@ -20,7 +20,7 @@ namespace ChairEcommerce.Service.Repository
 
         public async Task DeleteAsync(int id)
         {
-            var de=await GetByIdAsync(id);
+            var de = await GetByIdAsync(id);
             if (de != null)
             {
                 _appDbContext.TrackingDetails.Remove(de);
@@ -45,7 +45,7 @@ namespace ChairEcommerce.Service.Repository
         }
         public async Task Save()
         {
-          await  _appDbContext.SaveChangesAsync();
+            await _appDbContext.SaveChangesAsync();
         }
 
     }

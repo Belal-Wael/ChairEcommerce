@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ChairEcommerce.Models
 {
-    public class AppDbContext : IdentityDbContext<IdentityUser>
+    public class AppDbContext : IdentityDbContext<User>
     {
-        public AppDbContext(DbContextOptions options):base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
 
         }
@@ -46,10 +46,12 @@ namespace ChairEcommerce.Models
         public DbSet<Address> Addresss { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Payment> Payment { get; set; }
-        public DbSet<Cart> Cart { get; set; }  
+        public DbSet<Cart> Cart { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
         public DbSet<TrackingDetails> TrackingDetails { get; set; }
+        public DbSet<User> users { get; set; }
 
 
-        
+
     }
 }
