@@ -1,5 +1,6 @@
 ﻿using ChairEcommerce.Models;
 using ChairEcommerce.Service.IRepository;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
 namespace ChairEcommerce.Service.Repository
@@ -49,6 +50,41 @@ namespace ChairEcommerce.Service.Repository
             await Save();
         }
 
+        public async Task CheckOut(string userId)
+        {
+            if (!string.IsNullOrEmpty(userId)) {
+
+                var cartItems = await _appDbContext.CartItems.Include(p => p.Product)
+                               .Where(c => c.cart.userId == userId)
+                               .ToListAsync();
+                if (!cartItems.Any()) { 
+                   return;
+                }
+
+
+                    var totalAmount = cartItems.Sum(item => item.Product.Price * item.Quantity);
+                var order = new Order
+                {
+                    UserID = userId,
+                    TotalAmount = totalAmount,
+                    DateTime = DateTime.Now,
+                    Items = cartItems.Select(item => new OrderItem
+                    {
+                        ProductId = item.productId,
+                        Quantity = item.Quantity,
+                        Price = item.Product.Price,
+                    }).ToList()
+                };
+
+                _appDbContext.Orders.Add(order);
+                _appDbContext.CartItems.RemoveRange(cartItems);
+                await Save();
+            }
+            else
+            {
+                return;
+            }
+        }
         public async Task Save()
         {
             await _appDbContext.SaveChangesAsync();

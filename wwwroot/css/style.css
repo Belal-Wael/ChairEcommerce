@@ -92,7 +92,7 @@ body{
     z-index: 9999999;
     background-color: white;
     height:100%;
-    max-width: 500px;
+    width: 450px;
     color: black;
     overflow: auto;
 }
@@ -274,13 +274,13 @@ nav ul li::after{
     -ms-transition: all 0.3s;
     -o-transition: all 0.3s;
 }
-.active-link-in-nav::after{
+.active-link-in-nav::after {
     bottom: -8px;
-    border-color: transparent transparent white transparent !important;
+    border-color: transparent transparent #FFD700 transparent !important;
 }
-nav ul li:hover::after{
+nav ul li:hover::after {
     bottom: -8px;
-    border-color: transparent transparent white transparent !important;
+    border-color: transparent transparent #FFD700 transparent !important;
 }
 @media(max-width:991px){
     nav ul li::after{

@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+﻿document.addEventListener('DOMContentLoaded', function () {
 
     //
    
@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
         let Bullets = document.querySelectorAll('.banner .container .content .bullet span');
         let leftArrow = document.querySelector('.banner .container .left-icon');
         let rightArrow = document.querySelector('.banner .container .right-icon');
-
 
 
         let productOptions = document.querySelectorAll(".card #optionClick i");
@@ -23,7 +22,28 @@ document.addEventListener('DOMContentLoaded', function () {
         let productNew = document.querySelectorAll('.new-category .container .row .card');
 
         let changePhotoInterval;
+        let navItems = document.querySelectorAll(".navbar-nav .nav-item");
+         console.log(navItems);
+         console.log(window.location.pathname);
+        for (let i = 0; i < navItems.length; i++) { 
+            navItems[i].addEventListener("click", function (eventInfo) {
+                let currentItemNav = eventInfo.currentTarget; // Ensure getting the right element
+                eventInfo.target.children[0].preventDefault();
+                console.log("Current Item Nav", currentItemNav);
+                // If click was outside a .nav-item, do nothing
 
+                let otherChildren = currentItemNav.parentElement.children; // Get all siblings
+
+
+                for (let element = 0; element < otherChildren.length; element++) {
+                    
+                    otherChildren[element].classList.remove("active-link-in-nav");
+                   
+                 }
+
+                currentItemNav.classList.add("active-link-in-nav"); // Add active class
+            });
+        }
 
 
 
@@ -42,23 +62,23 @@ document.addEventListener('DOMContentLoaded', function () {
         // Cart Info  open and close cart
 
         $(".topnav .bi-cart").click(function () {
-            $("nav .background").css("display", "block");
-        $("nav .cartInfo").animate({right: '0' }, 500);
+            $(".background").css("display", "block");
+        $(".cartInfo").animate({right: '0' }, 500);
         $('body').addClass('hide-scrollbar-thumb');
         });
 
 
         $(".cartInfo .header .closeBtn").click(function () {
 
-            $("nav .cartInfo").animate({ right: '-500px' }, 500, function () {
-                document.querySelector("nav .background").style.display = 'none';
+            $(".cartInfo").animate({ right: '-500px' }, 500, function () {
+                document.querySelector(".background").style.display = 'none';
                 $('body').removeClass('hide-scrollbar-thumb');
             });
 
         });
-
+    
         //*****************banner**********************/
-    if(window.location.pathname==='/Home/index'){
+    if(window.location.pathname==='/'){
    
             function changePhotoDynamic() {
                 let urlimg = imgElemnt.getAttribute('src');
@@ -119,14 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     document.querySelector(".productInfo .moreinfo .price span").innerHTML = ` ${productPrice}`;
 
                 }
-                // Add to cart
-                else if (className === 'fa-solid fa-cart-shopping fs-2 ') {
-                    console.log('Adding to cart...');
-
-                    let cartValue = document.getElementById('cartValue').innerHTML;
-                    cartValue = parseInt(cartValue) + 1;
-                    document.getElementById('cartValue').innerHTML = cartValue;
-                }
+               
 
                 // Add to favorite
                 else if (className === 'fa-regular fa-heart') {
@@ -147,29 +160,12 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelector('.productInfo .closeBtn').addEventListener('click', function () {
             document.querySelector(".productInfo").classList.add('d-none')
         });
-        let productInfo = new Object();
-        // Click in product card to add it to cart
-        let productsCards = document.querySelectorAll('.row .card img');
-        for (let i = 0; i < productsCards.length; i++) {
-
-            productsCards[i].addEventListener('click', function (eventInfo) {
-                let imgsrc = eventInfo.target.getAttribute('src');
-                let proName = eventInfo.target.parentElement.parentElement.children[1].children[1].innerHTML;
-                let proprice = eventInfo.target.parentElement.parentElement.children[1].children[2].innerHTML;
-
-                productInfo.src = imgsrc;
-                productInfo.name = proName;
-                productInfo.price = proprice;
-
-                window.location.href = '/buying.html';
-                console.log('hello');
-            })
-        }
+       
 
         //************************** Slider of Special Category *************************** *//
-        //if(window.location.pathname==='/index.html'){
-
-            let cardOfSpecialProdutc = document.querySelector('.special-Category .container .row .card');
+       
+    if (window.location.pathname === '/') {
+        let cardOfSpecialProdutc = document.querySelector('.special-Category .container .row .card');
         let cardWidth;
         var WidthOfScroll;
 
@@ -179,9 +175,9 @@ document.addEventListener('DOMContentLoaded', function () {
         specialCategoeryContainer.addEventListener('wheel', function (eventInfo) {
             if (!mob_view_Special.matches) {
 
-            eventInfo.preventDefault();
-        specialCategoeryContainer.scrollBy({
-            left: eventInfo.deltaY,
+                eventInfo.preventDefault();
+                specialCategoeryContainer.scrollBy({
+                    left: eventInfo.deltaY,
                 });
             }
         });
@@ -191,12 +187,12 @@ document.addEventListener('DOMContentLoaded', function () {
         btnRightSpecialCategory.addEventListener('click', function () {
 
             cardWidth = cardOfSpecialProdutc.offsetWidth;
-        WidthOfScroll = cardWidth;
+            WidthOfScroll = cardWidth;
 
-        // specialCategoeryContainer.scrollLeft += WidthOfScroll;
-        specialCategoeryContainer.scrollBy({
-            left: WidthOfScroll,
-        behavior: "smooth"
+            // specialCategoeryContainer.scrollLeft += WidthOfScroll;
+            specialCategoeryContainer.scrollBy({
+                left: WidthOfScroll,
+                behavior: "smooth"
             });
         });
 
@@ -204,11 +200,11 @@ document.addEventListener('DOMContentLoaded', function () {
         btnLeftSpecialCategory.addEventListener('click', function () {
 
             cardWidth = cardOfSpecialProdutc.offsetWidth;
-        WidthOfScroll = cardWidth;
+            WidthOfScroll = cardWidth;
 
-        specialCategoeryContainer.scrollBy({
-            left: -WidthOfScroll,
-        behavior: "smooth"
+            specialCategoeryContainer.scrollBy({
+                left: -WidthOfScroll,
+                behavior: "smooth"
             });
 
         });
@@ -250,34 +246,34 @@ document.addEventListener('DOMContentLoaded', function () {
         let Right_Mover = () => {
             movePer = width_product_New.offsetWidth + 10;
 
-        Tolast += movePer;
+            Tolast += movePer;
             if (Tolast > maxMove - movePer * numPhotoView) {
 
-            console.log("hello");
+                console.log("hello");
 
 
-        Tolast = Tolast - movePer;
+                Tolast = Tolast - movePer;
             }
-        for (const i of productNew) {
-            i.style.left = '-' + Tolast + 'px';
+            for (const i of productNew) {
+                i.style.left = '-' + Tolast + 'px';
             }
 
-        console.log(movePer);
+            console.log(movePer);
 
         }
 
         let Left_Mover = () => {
             movePer = width_product_New.offsetWidth + 10;
-        Tolast -= movePer;
-        if (Tolast < 0) {
-            Tolast = 0;
+            Tolast -= movePer;
+            if (Tolast < 0) {
+                Tolast = 0;
             }
             else if (Tolast > maxMove - movePer * numPhotoView) {
-            Tolast = 0;
+                Tolast = 0;
             }
 
-        for (const i of productNew) {
-            i.style.left = '-' + Tolast + 'px';
+            for (const i of productNew) {
+                i.style.left = '-' + Tolast + 'px';
             }
         }
 
@@ -288,18 +284,6 @@ document.addEventListener('DOMContentLoaded', function () {
         arrowrightNew.addEventListener('click', function () {
             Right_Mover();
         });
-
-        // }
-
-
-        //***************************************** */
-        // let mob_view=window.matchMedia("(max-width: 768px)");
-        // if (mob_view.matches) {
-        //     movePer = 50.36;
-        //     maxMove = 504;
-        // }
-        //***************************************** */
-
-  
+    }
 
 });

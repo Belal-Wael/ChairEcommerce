@@ -14,15 +14,23 @@ namespace ChairEcommerce.Controllers
             _cartRepository = cartRepository;
             _userManager = userManager;
         }
-        public async Task<IActionResult>  ShowCart()
+        public async Task<IActionResult> ShowCart()
         {
             var user = await _userManager.GetUserAsync(User);
-            string userId = user.Id;
-            var carts = await _cartRepository.GetByUserIdAsync(userId);
-            var products = carts.SelectMany(c => c.Items.Select(i => i.Product)).ToList();
-
-            return PartialView("userCart", products);
+            if (user != null) { 
+            
+                string userId = user.Id;
+                var carts = await _cartRepository.GetByUserIdAsync(userId);
+                //var items = carts[0];
+                //ViewBag.Cart = carts;
+          
+                return Json(carts);
+            }
+            return NotFound();
         }
+
+
+
         public IActionResult UpdateCart()
         {
             return View();

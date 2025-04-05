@@ -9,6 +9,8 @@ namespace ChairEcommerce.Service.IRepository
         Task AddAsync(Order order);
         Task UpdateAsync(Order order);
         Task DeleteAsync(int id);
+
+        Task CheckOut(string userId);
         Task Save();
     }
 }

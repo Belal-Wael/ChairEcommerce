@@ -65,12 +65,12 @@ namespace ChairEcommerce.Controllers
             return RedirectToAction("Index");
         }
 
-        public async Task<IActionResult> AddProductinCartAndCartItem(int productId)
+        public async Task  AddProductinCartAndCartItem(int productId)
         {
             var user = await _userManager.GetUserAsync(User);
             var userId = user.Id;
             await _cartRepository.AddProductAsync(userId, productId);
-            return RedirectToAction("Index");
+            
         }
 
 

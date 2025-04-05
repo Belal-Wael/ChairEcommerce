@@ -21,6 +21,7 @@ namespace ChairEcommerce
             builder.Services.AddScoped<IpaymentRepository, paymentRepository>();
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
             builder.Services.AddScoped<ITrackingDetails, Service.Repository.TrackingDetails>();
+            builder.Services.AddScoped<IcartItem, cartItem>();
 
             builder.Services.AddRazorPages();
 
@@ -35,7 +36,14 @@ namespace ChairEcommerce
 
 
             // Add services to the container.
-            builder.Services.AddControllersWithViews();
+            //builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+                    options.JsonSerializerOptions.WriteIndented = true;
+                });
+
 
             var app = builder.Build();
 

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace ChairEcommerce.Models
 {
@@ -8,6 +9,7 @@ namespace ChairEcommerce.Models
 
         // UserID as FK
         [ForeignKey("User")]
+        [JsonIgnore]
         public string userId { get; set; }
         public User User { get; set; }
 

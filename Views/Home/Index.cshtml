@@ -8,14 +8,16 @@
 <section id="loading">
     <span class="loader"></span>
 </section>
+
+
 <!-- banner section -->
 <div class="banner">
     <div class="container">
         <div class="content">
-            <div class="right-icon ">
+            <div class="right-icon">
                 <i class="fa-solid fa-arrow-right"></i>
             </div>
-            <img src="~/images/main-banner-1-1600x700.jpg" alt="">
+            <img src="~/images/main-banner-1-1600x700.jpg" alt="" id="bannerImage">
 
             <div class="bullet">
                 <span class="active-bullet"></span>
@@ -98,8 +100,7 @@
                                     <img src="~/images/@item.imageUrl" alt="">
                                     <div class="qick-choose d-lg-flex" id="optionClick">
                                         <i class="fa-solid fa-eye"></i>
-                                        <a asp-action="AddProductinCartAndCartItem" asp-controller="Product" asp-route-productId="@item.Id">
-                                            <i class="fa-solid fa-cart-shopping fs-2 "></i></a>
+                                        <i class="fa-solid fa-cart-shopping fs-2 addToCart " data-pid="@item.Id"></i>
                                         <i class="fa-regular fa-heart"></i>
                                     </div>
                                 </div>
@@ -216,10 +217,6 @@
 }
 
 
-
-
-
-
 <div class="brands py-2">
     <div class="container">
         <div class="row ps-2 pe-2">
@@ -232,3 +229,5 @@
         </div>
     </div>
 </div>
+
+
